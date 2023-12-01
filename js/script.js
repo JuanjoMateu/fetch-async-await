@@ -67,7 +67,15 @@ searchBtn.addEventListener('click', async () => {
         if (!res.ok) {
             throw new Error("Pokemon no encontrado");
         }
-        const pokemonName = await res.json();
+        const singlePokemon = await res.json();
+        app.innerHTML = ""; 
+        app.innerHTML += `
+            <figure>
+                <img src="https://img.pokemondb.net/sprites/home/normal/${singlePokemon.name}.png" alt="${singlePokemon.name}">
+                <figcaption>        
+                    <div>${capitalizerFirstLetter(singlePokemon.name)}</div>
+                </figcaption>
+            </figure>`;
     } catch (error) {
         console.error(error);
         app.innerHTML = error;
